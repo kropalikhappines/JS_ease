@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Необходимо попросить пользователя ввести два числа в переменные `a` и `b`.
+Необходимо вывести в консоль один результат из следующих проверок:
+1. Если оба числа в переменных `a` и `b` положительные, вывести разность
+чисел `a` и `b`, а именно, вычесть из переменной `a` значение переменной `b`.
+2. Если оба числа в переменных `a` и `b` отрицательные, вывести произведение
+чисел `a` и `b`.
+3. Если числа в переменных `a` и `b` разных знаков, вывести сумму чисел
+`a` и `b`.
+В остальных случаях программа не должна ничего выводить.
+-->
+  <input type="text" placeholder="Введите температуру в Цельсия" id="num1">
+  <input type="text" placeholder="Введите температуру в Цельсия" id="num2">
+
+  <input type="button" value="Submit" id="btn1">
+
+<script>
+  "use strict";
+  /*  Не нашел методов на проверку символов
+      Пришел к выводу что надо сделать свой
+      А проверка нужна для того чтобы программа переставала чтото делать
+      если введены были не числа, иначе выдавала просто NaN
+  */
+  function isANumber( n ) {
+    var numStr = /^-?(\d+\.?\d*)$|(\d*\.?\d+)$/;
+    return numStr.test( n.toString() );
+  };
+  /**
+   * @param {Ars} title - The title of the book.
+   * @constructs
+   */
+  function gameWithNum() {
+    /*
+      Не стал называть const так как пришлось их обновлять,
+      я бы их сразу перевел бы в числа при объявлении,
+      но нужно было проверить на наличие символов
+    */
+   
+    let a = document.getElementById("num1").value;
+    let b = document.getElementById("num2").value;
+    if (isANumber(a) === false || isANumber(b) === false){
+      return;
+    } else {
+      a = +a;
+      b = +b;
+    };
+
+    if (Math.sign(a) === 1 && Math.sign(b) === 1) {
+      if (a > b) {
+        console.log(`Разность чисел равна ${a - b}`);
+      } else {
+        console.log(`Разность чисел равна ${b - a}`);
+      };
+    } else if (Math.sign(a) === -1 && Math.sign(b) === -1) {
+      console.log(`Произведение чисел равна ${a * b}`);
+    } else {
+      console.log(`Сумма чисел равна ${a + b}`);
+    };
+  };
+
+  
+
+  var btn = document.getElementById("btn1");
+  btn.addEventListener("click", gameWithNum); // В прошлом задании было замечание по поводу onclick
+
+</script>
+</body>
+</html>
